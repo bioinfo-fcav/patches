@@ -1,0 +1,192 @@
+#!/bin/bash
+#
+#              INGLÊS/ENGLISH
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  http://www.gnu.org/copyleft/gpl.html
+#
+#
+#             PORTUGUÊS/PORTUGUESE
+#  Este programa é distribuído na expectativa de ser útil aos seus
+#  usuários, porém NÃO TEM NENHUMA GARANTIA, EXPLÍCITAS OU IMPLÍCITAS,
+#  COMERCIAIS OU DE ATENDIMENTO A UMA DETERMINADA FINALIDADE.  Consulte
+#  a Licença Pública Geral GNU para maiores detalhes.
+#  http://www.gnu.org/copyleft/gpl.html
+#
+#  Copyright (C) 2012  Universidade de São Paulo
+#
+#  Universidade de São Paulo
+#  Laboratório de Biologia do Desenvolvimento de Abelhas
+#  Núcleo de Bioinformática (LBDA-BioInfo)
+#
+#  Daniel Guariz Pinheiro
+#  dgpinheiro@gmail.com
+#  Faculdade de Ciências Agrárias e Veterinárias (FCAV)
+#  Universidade Estadual Paulista "Júlio de Mesquita Filho"
+#  dgpinheiro@fcav.unesp.br
+#
+
+if [ ! -e "./inparanoid_4.1" ]; then
+	echo "Directory ./inparanoid_4.1 not found here."
+	exit
+fi
+
+echo "Found ./inparanoid_4.1"
+
+cp ./inparanoid_4.1/inparanoid.pl ./inparanoid_4.1/inparanoid+.pl
+cp ./inparanoid_4.1/inparanoid.pl ./inparanoid_4.1/inparanoid-diamond.pl
+
+echo "Obtaining passphrase based on inparanoid.pl md5 ..."
+
+md5=`md5sum inparanoid_4.1/inparanoid.pl | sed 's/ .*$//'`
+
+echo "Creating patch inparanoid_4.1.patch.gpg ..."
+openssl enc -base64 -d > inparanoid_4.1.patch.gpg << ENDOFCONTENT
+jA0EAwMCeRCKUoIAhZ5gyeytacSv13sJibNFjbkmLwJ21Cpxu9kyyysEGlhYurLw
+02G1EcSv//z0qig9lDXI/6lSNYm7lzq2hRvbK7OCtBK66uFOibqWdku4t+wC61ZX
+FrsnBEQe3+KS+K/KDahtsnr+l/WMfdPkCB51rDDghBZDtK/2uus8zHww+GmXiHsh
+t1lC6ncBrczAcEfJ5+I1sR+yStNkvUmOtGTcC4iKARHwzz4jVwauEpX9kdctsx6P
+Eh0KbCmpCQWoSZPucTMA/VZPAaQrOmd5If5l/2yausVOfPHCs04ahU24V05PucZ0
+tkx9HTp3C4Jti9+l5PPtroZBuXjzAPwCjQi2Rr0uI8Vhvdu1ox4ZN3tXCdRVVVxd
+XbcoMyVC2+/1rTZMZDGegGmx1Vy6t3yDAEzb3VJtEE+grgULWbOJsfQxDsQwSbL4
+nxo//so3hsbAqtK8E6wf7njXIIr2HwMeiuU5mT1V0krzjpcxkPuALSrm4V7FyTuC
+UTxr6+zCfEicqkUPAaxlopgX7h3FyeQ7Iy3mT9fsOua55j2k6JBBFFT+JujSChGM
+d/58Sgfy3HyhBN2ITGW6BZIxx8g3My7IX/LTDun5Fj98Mx8c3J3mE1b4x2XbThw5
+vhUP2iARVVq9fHHpjcc0rv4quY3gF+DLdHjF5oVojAs3sHr7RxlJ1JHzBNB2Y41M
+sMreir+83DYLBPA/E0p4ZWY11pwpTq1cgYax24RP/h5M01cSQevqlKCa/VzKnqgg
+NjKLzLJkEjFUp0fRfLRXo4oNQ1QAGgGVuCibAmCiVuCNGnDMIY/QhGuc1gRBDdGZ
+9ddEORIZV9DzKzlZkwsJLFYjQKh+31BJXnmN6i2MQ2SeDmWoSwyymQKUX8hI3xdj
+EzSGezMBQdDQP2V2TkThCUywdWIbh9oxYqE0DTNLTXDGjjc5rJC6/6BB6B1rnPsU
+IcDt4yfKHRqzPKz4HM+fT8JOc/E++z1XTLS+Y3GoyLnKizJCCrXq3607OwtSgKBF
+wVL5u30KMrNpt2JzA6n+y6dVgFTgR/wxmUT9yxtu3bAz1UjbllDojA8iPZlEt/ZI
+bclFPVkcGHvIbNWSvI2yqymSTAqGEV2jL91WnimA2eHFiNToVc7WSlqIiddEdg6H
+8SXgnPL4R2pDl901gL4sUKqK0baQVUBwco4fu7nuxqkNmXfK/OT12ayywDeB1Qh7
+Rj9lG+4taF0bZsTW7orejiRPuFAHs2Q83qyXQKnX6DjJEdFhxRzIo+JVxRs8KjKR
+0vgcjCeeyaSCdy5+ImU231NiNJJa3jzOAUBmMRsla0D3ZdL5LuJp8XCiQT6fUlAW
+HrPOwwLOnwbKEojnXYyFir6tbffBr/x/97hucY3u+MpqSWE759CCsNUY8sCBh+5C
+SZzGlUzbxAE8pWpw3KAiqOoP6FO19HOpWvLvWMKlMpWDrLNeKDModN3e8mkbcBAL
+C8fzJ2VR3lsz3I/fzz7+rriZzZrttHDTIQEI/B/7u4CPa53+q4H1dYIGU01n+/JP
+3u4jXsxFgrB7D+aZ0laVABTcGMrdhKcYonbFjeTOAPVdvEye3yojbbMGB0jAP2/a
+rzBhyWUnO6L0UQ4Yfxp+yErfzZMnFSxZg7ysA5BLyvJsH1d3GnsYcKauY4pg8rLf
++kiMN2z77EU2Ey+CA1kc0XNGCPn4M1sQRFApZvwN0zGiuBjTRmEvUHUmYWqLRzOZ
+H4GThTSpMKni6RnN/7tpyTWNofeUOTmVVASORY/Qy3Wrw0+Pk5VIJ5JEn7qFgFo9
+JsbfPcUXnSpT59mdEipM+FIF3LStIL/kS/0SylKDFIFiZRRgVsX4fmm609so27va
+n7ToWVtZP9zUD5xdh9T96lkcuju/SIfmJMsolowFd9OaB9CP2PuJZoicvWGPq9EK
+JDi+twanZeLklA2jUyGlmBYUn/YNIjDh88w6L+YTDZtdU5SCOGwN1B1xmnexto2w
+wlfGbaHMPClkPnYcThffUrPXGUUNSlx3AYRPIZtv2tyVsNi1QTyzLIYP/J+Gm7px
+AOOYpWDcMgnSogbMpnq5uLz/dRn5/yS5LHsB6a7uBQBf9YUlbAnI3S8tlo5ZMsKH
+qqANZbnBmwhBrClEVBeWMLPgawXPno5Xsj+P8lN6FXyI3mazNUyx9DTHoiQlIADt
+dT/gRpnZHAazhRfuMJK1i/rMMpdBr9/xicM6/82GPOaPK0oSQh3ElCnF6ZLwMN9Z
+Y+vWFkniC1afINmGAi/gvYl2L0+bpPcmTXEBsLFkGg/uCbJ6OknH8XT2PMciZ+VY
+pKjAyPGrcm/JLiqhmPk4qekXN5EnfesJeuJRT8vq2HApqAuNYtYipVJ0SuoC9yr9
+D87XeZnxvSgr80BzdgrjNKsnIOrqSMlZ5ixeUqE41X/Zqy0aS9h8Z/GZMlWfBrDf
+N73a6W9RqlmT+tSGtsoT7VU+Fxt7j073+J12Rwa1O5K3EihMwLmBZYg6sS1Ugy7+
+xIP4UspShKrPhqsjB0P1fDeVqro/PkrjO4fm8+pLUqO8kvJP1kiNfSt930XhwDbN
+DnWpJbP/x2vQouIdVgkEMMHZac7ji4xGBA6WooCFn24xt0iXtooJZ+A5XL7ubMbw
+2ffsauI2HXQbGv5RNqRi6GMA4iNlxsuQYLgOC6e4BLT2cOeLNkw/qFoY3ry+uuBv
+E5hxoKfSE5UYzHRQMnkidenzkd51o/MwnWRsuVEBCG7XWgNgfhe661J55sgjjDlU
+TNFfKQGbGrxxZU4ytT4R4zYOstunMgLN6VIb9dmxAvg8xNiAWYr28rP1NTJ8qm+2
+ZcxNFwOpqqJ5Gt4cTemCOP5THJQ9Mcd9VEkAC4UyonUJfb0O7fMo5A5/3lGD7xP8
+PLYfA1Dt+gD9BQrVJoi98OWcgSVvhnYVcxEhkJ7/9MN9DYcN2kF6fWjTUYoTMuae
+hHuEasOhCUDZsb3aQmDnO71gHsmm9gynoB1PWAW57NF1HbYqGVD91UHA/29igd9b
+ucYvQMfOQGbpx4XYVoQnuFSBjeJkt8ihrMrTHeS+W9AFH7W4PD6ecHAdie2keiqc
+Rf1ZizX6BOqdBNgn+xwkroRs/15VpIXS5EsJ5GlBy5gEub8wR+jwUsQf72KejRmY
+v64hbc1FF2oG9Ix9PmlMaHf1AbDh1oVGlJWqeq9M0Hb36GSR8saMFu65SDMh6Z0Z
+rgquQXrHZWzdug0kR1pKZwX8KlnD0HJPSpLhWJWXS/6aEn55kwghiGUPxzdtT+t4
+1Z3iKZcXi7tME18rkmrh0PTec6cJwZlARh2tbD9PW5NpYCBYUm9Xs9jLmS96IjF8
+6GNuYandxpNZhK1EWmnYudReLxUe+Sx4pIrtO8NQGKozpp5Fg7eDjOhOXEdT4EcY
+yjJx4jg7uYTg/MOSZ67TK6ppLJqJpVuytLuRQXCFKS5OHDtbjR0n5jcrtZ8x8FVQ
+/baGHRt+mRpdIeUj5Z2PX7YqY7KZto5c36VArA8S2NlcRKCam0bZZaB39xaGP911
+T/AnYfpV6heRYmx5M4ZLJLru6+tZc/AI9JS6p59QkQBmC/7FLOXUkMSAm3SCYFa3
+Qrf55mnr0mT7GBPZxtpTvavahh9b5hQGDfMdL/vNYT9redYGepwJalGd+43wYvCR
+QLoFQQiuk67bJiuzu1uYx3if42xtmJIubhLXSoAPXzIJ1dqMf4zwTfvAsfOns6EV
+JvLtrd1I3JDi9Di7NXwm3j5f2PlnPuqTjH22wSDdi8ITDZxmNxzB0DHVg15rlwaJ
+56CXGVUl24ECEhoeVKH7m8xy4AG89fp2NG3SYD4txpbGr53yLUuUZt0+Kk6au6da
+/SmtuIWheGxJtLsiWb24hSOziQ4UOrosmjC15cBjghuUYjyz9sG9hJX578b5VFm2
+8L6BNIusX6cABBCLPYA3nimiM90LIHtJDaZB4WNZUofNMYYxghUyIUUE6I3O0uCx
+ZZV8dYfVq/cOEtKAWEXJsDzrZrfgyl3eqJ6fWjyLMkA4ccqxvw/PsHzWWVUSiMqP
+STdVv25XlK9Q8puoduJBc+5o7dCerArnWOI3ebxe3uZ8plAwnFALjbC49WxJOqT7
+kwrrq/KBmbLyL9NxWGCTig57F14PGQ25+gHiQdYHeTTOa783myRnHGiVpATwKP3G
+IeXSdp6u9dTle36PWf9hlTdgtZQGFaCIM2e1hYYxIRR6o/9vOaR4dJK5PaDAAiss
+FnYEfHYQAbwzCU+QvXWc6ugbxyzxZWMsiB5+1nLQqk8xXWFJ2ZHJjL5PrdStYfw3
+pPlZVZt9p457ybrfJaRkBkz81YW2KQxL7MmY9AM3XcRGCkGsOQQiFEwldTQXHY+S
+fsoE+URR35NtyL+mv1QTX1wcHmW5y0W5AbOGkbaAioTrPTkSCTBtA8SeIqGutVmO
+Q9qO1HpiEMF/gFRIlIu9/G5bsJ+t/ClV/HWMbCcOD3nfY23OiVzX4utzJVfYjlla
+7Y9+4FQemuPq4MxWVdECJvOUo8FMBfyO31gyK0ERbSZU7kXifH1cbNzvl9mzFu//
+GQDD7XgYN32hgGqmZqxJR3ICSjDXkx5W/AuI1x3HO/zJAMdW+dpY5y4Q1HaTOPn9
++s7L/RiFjiC9nP9tRpBY0Gz4qciyOO0Ks7Ja49GnHy91+uDZE4NG8cQOfOxsK0Jp
+Ao2iwX/KGQvsX00Jcux2FBBbXOGar9/c0+Hj7FPTgZrb3h7BH3RnONefy1XXLB/w
+punFacOSclBeTtxfnVjtsMHIENAZYi53heo0x5cvznFH00rLLvWSV6jf3kF+0GMx
+itqivuhBSAE8skP/PAwH2xad7TUMWnwIA6WhfYw9EvZJCwh54f+odz2uVIuDkFWP
+u8BRSE5qtlz+vKQRqjYskwC9hAWRsjTESS8eSvPi4rlajEkigWRFiFVmqHLOKsgS
+UsDLUPmKm7zFE3SIELwFvbjzjA79zE6SFCakhuCYQ8f02l61VR6DZLLNB25ZMbke
+SvvUCj8bAGsYGZQSJ9Dzj8v7HYKuqyEDzlYb8S/bJj3XvCb1goZpapVLweuVuwUe
+U+89VFF5Y202cYDnscUNMGohwig1ZGWvLrrUBChAcuh0tTG1HIZUfHSWa4ZpwWkp
+cUHbsk8Rztc8GBukOjwXNvlBxZz8LlFI9Y2eKViYLIqKdS3fOKQ7Xxd7FROgXxLh
+eALXSQZI0Z/eRCYKQsTdJ3amaDzYOt0/EQOiYZ+K9yWcN8l9GdUfq6FaJgCWs5L+
+C4ffB8e1VfuhM4G+Mh46C6fkyuKO1qTQXwavdCAC8ifmwbBFXoMLNRSAeSt2XgQC
+dwfcwn2ehH+CwAcp54L+JuTZ3mR7uhS9hn0q4r3ZIUWkzgpExbSlbSRKsrm++6OS
+ynXe16Y+zVkmWHfI9JKGzGHEwigBcKEqVY7GUh30r0yrpRMmn1clv59cDsYXDvOZ
+E3dJhDWH8/TzFdylQ0aYIEMUI7ADpqniucTZFntHp4gD6xXUOAkq0yLwlz9Cy5yO
+uu5L0XjXh1bjjp9wBZYdXTTi3kweSA2rQK//zkzv/dHnvzYikaU7N36kWeUP2unu
+REQ6hxJ+WoajulnteMmSAEvRvw3AP1SlO5zu48GXEdul/vt5DSCJRh6OCi5nPGWm
+Uaxwx7EDx8WMU3pRmeKAMNLkXlzL5utxTbmWlAyacA9e4Bk6WW4E0Tg4097bu1E+
+34Mwfm73iPcr3dvQ3m+TfwBZqSyKPixM8Va4xqlvki6WDktB0JEPq2TJM1+EzUQ5
+0E5h23OH/4f6NyvkXZO68a+MtA+J3w8eJutf9hsoQ2w55KQwRbkzZTyJV1Vfj253
+OAuOv4z62R88R3Hdlk6voIsMRMAqCKRiqmMHrkbS8ZP167gk6cMoI8x4vxVaPvbS
+moIP7UNAqYoyrEGwkyIO1l2MmwHg5fceLByLOa6DejC4wZ3NZYmEHUxXEshBfde0
+j5i3F5blLPnx1bqqPhWgMwJRwZ0bxGMKhQoSC3IqPlXopsNA1vNatVVUv31/CSeV
+k/mmmibM2RQc4pr1ARVXBsGKvlq5VUdDtHOlD5UANxSd9p72bQiAK9O9e/1gAjzM
+j0ZBX/lEMlGXTh+fk+//C1kyYnfUxnp91JfN8W6aEKZyrVT5Dh4PIFqfj1z/E1tW
+fXLNui9UiM3AnsIKilccHLlooFA4Y7j3TqiZOrxwb20lEOFkHqMPxkkMcCV77TpE
+OvUw4GCoXsyVIr4FoQKhuuAWQ2NT8XQou/cuAzRhMypYEZ+QFarAMtToApDzH2xR
+LScwPBx/vBas++3fT0bAv+uLMLHTNYZMF8gK2EmIS/X0Xkkm6Pyo3qd8yBFL5YrI
+rvJTa3uO6pKEgkPdD9WkEUQ22tnh5uEt/15E51e+Ylb2GYn/ebzmgY21snyA03By
+cMwfLEYytAJkg2al+bcg+xpvPDtNBusTR5wh2UfHW4Sx+ZmAUu2khW8C+vZSNBDG
+mclaw8DD9MNrNYF+0AFHtE5Vg5uzOatB4j9glgK2m4CbfxPjbMCSEbwIXub6NHOD
+JQKsIwxR0f5WW9yxtLysPNqtJpb6YcmpXPfYytLf7AF/ubum6+24PEamAwO7Too0
+cD6q9Ah2p2a82p9OG/TujFKIQV1LVTl3TbRHo0SViEKEJsfc9rIZ7CCIZniLcusw
+l+q4AHEGD8MIkp+bnpNgD6A1HL2FZ3d3Zsq9a6mBaUvt8aReB/l+miMB10uZuv9p
+AKH+DTM6P4o7zAdK4PW0kXO8LQWKuQ091yfk5h6f1qwBh5aI7ZBn/G9qZL/+8Dod
+ViCKpV3mii6c7y33wYdmrVNaH1004mr7GprhJgMXkXDQBqcoG6AmEOa0QeOAevGd
+MGo7GHF45uBXuGhXIBEZkLkNpr5WsXAX78KoWwFWGhTIEI9z3eB6OfV5DBQi3R2m
+kqVPP/v2qILQTTMAs6AKu4Kys1supqH+KilhwM2h1NVI3rw3i7zrFTWoxoPMM6qN
+KTtGCCVUI+CGKzfLArtqAVupojj8OQc5BS0FXh/X0i/K3r048nCGMFBs524QSLq7
+bnQwsukxuni+KqnZzlyjhXJhsowtTy5E98gh/cQkD3UxipvqWhmwCK+qfI4O/Xv3
+fdbLetJI75iR0RNR26UBT1FgLt41Ou6bJ3KGmcSZMrzA6mZQyNS2W72VGNib/oNF
++1QbazDCsqKEBXgeqWBBJ6OI+cYgeM2mC1MzI5ga1I6QkrD8HVZEmiwpaQShXj0a
+gfpSnFdvCMCe7Xioww2Y9s3xJcl8nCsjjx+772rEqtVMY0mR7iFHaT5U8dGdYFxq
+1hgOxEpV0ebeXglu9UcU5oFeDpXnIp4bp9D5EOE+wFjnoQdA8MtawsD46O7sH/xB
+5pQa9T8JwGzw5ubLkJAHluBoXgUdMH8EwBrFfg36cYEf39rkMv2WGZfu/9KyLvGp
+oBc1Ktf4g3BI7YkrFxP6xPHtVWuSjqVC5FCdjeaAkGQroUM2va9tEzLoMtxwfxjd
+CiFXUEcRqTe4cirIRuS5S2YAbmC61OhseJOh/gMEP8yrRTcS2yydHj8ijUvKfXB/
+EB/rWaIE36srRisbTtmzgujYvIVSYmuUreN5VN4VnyYeEhF14E1VsJUuLYaBUHWw
+jE9IYObuR6TlRS7j+DCIWtGh/t+vU4cWXiY8pFTUzdU7em7FVHvvU45jpeHtAy9I
++NUBqG2KYj94tr7Tndb0yVO9Yr7RKfQctGBwFsvHw7oyxl6X8Bejmzx7Mu9Taqpx
+WJckT0kq6/sPNj0q067+lWO7SV5w/xQPz+fTvd9DieH9QDuKkCWHMX1N4qQ9dUMq
+83g3RLFP+dyiURNqCV4eBwHUZn1msa8NIloyjUloZ6Qamawe1lUVMuOEi1vB5whZ
+TEs4gn1SyYwUOH5I2b4jTi3r/DuPjY17lVTGF7LVPoY+9W+XKgE1llE28ha9B0VT
+Z6QatFitalqM8ZOzYYWFMgDNVMj0djBHz/CrwoEP5Dy7BReDPHzEP8E7ZVSqBH7v
+OAR6TfYdqGqE1z30n7cs4Z6TeOHOKmWt/C59KzBFbnIjKGhOmM8AO50qkXm29tWy
+1DL5SYF2CGNstGzArX0Ag2MXy4jV83FWhCw+cjTGxhHqIShyTy4USHPYt4lUGNdx
+i6ioziLxXm+QvsGflKpWKDNI+QniMfr2yfPfXDEHdVgPY78HR3spEwccAOsovxec
+ybk1hTIFPq/mbsddxedvjjyKwK6tc5ePhleWoOAx2QVnOe2IZ9o4d28Yx3Dn/WXz
++Euco83siWiySiBbxpofa8aXF3QzQAlyU/UuJuGxvCIjJXmwWJU6s5jA+T0nEX1W
+pP8rpl314gQcfC+PcfbRF3ZCblUO+smpqIT6mozhiCOBoLvlTGRxg8GT9kOxeodx
+h51SuW1j+a3s1PQAA77a3onMnLJGDk8l5hel0vnPraRoLBjVb5NNla1uap18qkfA
+ywNv8MsZ4Jd1lJI9m+4BdCoQLia4Grr+F0wkY37O6Y95Wghz4lu1RiCQmmTCDOVv
+GUGh0xJU5cpnMBjCOmivXvhkTfnDiye4TfQjVPVNwISct14BPKmZG1JQmShGcJ46
+hoG/E5+jExuiyeFR/julKxJ+q1g/xrFofXjvb4y60bGfFck0f7k/twnHYXTyRToK
+kOBfsMr7NYN6ag/VwHqQqR/WmPvyDZnXDRJUpJDqxONVuOCjWJyCgrMgP/DLB5e9
+H6U=
+ENDOFCONTENT
+
+echo "Decrypting patch ..."
+
+gpg --no-mdc-warning --no-tty --batch --yes --quiet --no-use-agent --passphrase ${md5} --output inparanoid_4.1.patch --decrypt inparanoid_4.1.patch.gpg
+
+echo "Applying patch inparanoid_4.1.patch ..."
+
+patch -s -p0 < inparanoid_4.1.patch
